@@ -1,0 +1,161 @@
+:root {
+    --brand-green: #008254;
+    --brand-dark: #002d20;
+    --bg-black: #050a09;
+    --text-main: #e0e6e4;
+    --glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.1);
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Abstract Background Glow */
+.bg-glow {
+    position: fixed;
+    top: -10%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 130, 84, 0.15) 0%, transparent 70%);
+    z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 60px;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-logo { height: 45px; filter: brightness(1.2); }
+
+.status-indicator {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+}
+
+.dot {
+    height: 8px;
+    width: 8px;
+    background-color: var(--brand-green);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    box-shadow: 0 0 10px var(--brand-green);
+}
+
+/* Partition Layout */
+.dashboard-partition {
+    display: flex;
+    flex: 1;
+    padding: 40px;
+    gap: 25px;
+}
+
+.card {
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    position: relative;
+    transition: var(--transition);
+}
+
+.card-inner {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    width: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+}
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 130, 84, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-green);
+    margin-bottom: 30px;
+}
+
+.icon-box svg { width: 30px; }
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #a0a0a0;
+    font-weight: 300;
+}
+
+.card-footer {
+    margin-top: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--brand-green);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: var(--transition);
+}
+
+/* Hover States */
+.card:hover {
+    flex: 1.2;
+    transform: translateY(-5px);
+}
+
+.card:hover .card-inner {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--brand-green);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.card:hover .card-footer {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Legal Footer */
+.legal-footer {
+    padding: 30px 60px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #555;
+    border-top: 1px solid var(--border);
+}
+
+@media (max-width: 900px) {
+    .dashboard-partition { flex-direction: column; overflow-y: auto; }
+    .card { min-height: 250px; }
+}
